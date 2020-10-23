@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { Container } from 'semantic-ui-react'
+// import { Container } from 'semantic-ui-react'
 
 import Navbar from '@components/Navbar/Navbar'
 import Footer from '@components/Footer/Footer'
@@ -11,10 +11,10 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => (
   <>
     <Navbar />
-    <Container as="main" text>
-      {children}
-    </Container>
-    <Footer />
+    {/* <Container as="main" text> */}
+    {children}
+    {/* </Container> */}
+    {/* <Footer /> */}
   </>
 )
 
