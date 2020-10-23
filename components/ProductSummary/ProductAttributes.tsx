@@ -1,41 +1,52 @@
 import React from 'react'
-import { Header, Divider, Table } from 'semantic-ui-react'
+// import { Header, Divider, Table } from 'semantic-ui-react'
+import { Layout, Table, PageHeader, Statistic, Descriptions } from 'antd'
+const { Header, Content, Footer } = Layout
+const columns = [
+  {
+    title: 'Attribute',
+    children: [
+      {
+        dataIndex: 'age',
+        key: 'age',
+      },
+      {
+        dataIndex: 'name',
+        key: 'name',
+      },
+    ],
+  },
+]
 
-const ProductAttributes = ({
-  description,
-  ...otherAttributes
-}: TProductAttributes) => (
-  <section className="container">
-    <Header as="h3">About this avocado</Header>
-    <p>{description}</p>
+const data = [
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+    tags: ['nice', 'developer'],
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    age: 42,
+    address: 'London No. 1 Lake Park',
+    tags: ['loser'],
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park',
+    tags: ['cool', 'teacher'],
+  },
+]
 
-    <Divider />
-
-    <Table celled>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell colSpan="2">Attributes</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-
-      <Table.Body>
-        {Object.keys(otherAttributes).map((key) => (
-          <Table.Row key={key}>
-            <Table.Cell className="attr-name">{key}</Table.Cell>
-            <Table.Cell>
-              {otherAttributes[key as keyof typeof otherAttributes]}
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table.Body>
-    </Table>
-
-    <style jsx>{`
-      .container :global(.attr-name) {
-        text-transform: capitalize;
-      }
-    `}</style>
-  </section>
+const ProductAttributes = (sprites: any) => (
+  <>
+    <PageHeader title={'About this Pokemon'}></PageHeader>
+    <Table columns={columns} dataSource={data} pagination={false} />
+  </>
 )
 
 export default ProductAttributes

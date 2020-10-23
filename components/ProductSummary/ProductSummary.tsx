@@ -1,33 +1,39 @@
 import React from 'react'
-import { Item, Label } from 'semantic-ui-react'
+// import { Item, Label } from 'semantic-ui-react'
+import { List, Avatar, Space, Card, Col, Row, Image } from 'antd'
+import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons'
 
 import AddToCart from './AddToCart'
 import ProductAttributes from './ProductAttributes'
 
+const { Meta } = Card
+
 type ProductSummaryProps = {
-  product: TProduct
+  product: any
 }
 
 const ProductSummary = ({ product }: ProductSummaryProps) => (
   <>
-    <Item.Group as="section">
-      <Item style={{ alignItems: 'center' }}>
-        <Item.Image size="medium">
-          <img src={product.image} alt={product.name} />
-        </Item.Image>
-        <Item.Content>
-          <Item.Header as="h1">{product.name}</Item.Header>
-          <Item.Description>
-            <p>{product.price}</p>
-            <Label>{`SKU: ${product.sku}`}</Label>
-          </Item.Description>
-          <Item.Extra>
-            <AddToCart product={product} />
-          </Item.Extra>
-        </Item.Content>
-      </Item>
-    </Item.Group>
-    <ProductAttributes {...product.attributes} />
+    <Row>
+      <Col xs={{ span: 20, offset: 2 }} md={{ span: 12, offset: 6 }}>
+        <Card bordered={false}>
+          <Row>
+            <Col>
+              <Image
+                width={200}
+                src={`https://pokeres.bastionbot.org/images/pokemon/${product.id}.png`}
+              />
+            </Col>
+
+            <Col>
+              <Meta title={product.name} description={product.weight} />
+              <AddToCart product={product} />
+            </Col>
+          </Row>
+        </Card>
+        <ProductAttributes {...product.types} />
+      </Col>
+    </Row>
   </>
 )
 
