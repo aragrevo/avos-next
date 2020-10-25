@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Layout, Menu } from 'antd'
@@ -24,11 +24,29 @@ const Navbar = ({ children }: LayoutProps) => {
   const { count: cartCount } = useCart()
   const [collapsed, setCollapsed] = useState(false)
   const [contentMarginLeft, setContentMarginLeft] = useState(200)
+  const [categories, setCategories] = useState([])
 
   const onCollapse = () => {
     setCollapsed(!collapsed)
     setContentMarginLeft(() => (!collapsed ? 80 : 200))
   }
+
+  const fetchCategories = async () => {
+    const response = await fetch('https://store.nicobytes.site/api/categories')
+    const allCategories = await response.json()
+    setCategories(allCategories)
+  }
+
+  useEffect(() => {
+    fetchCategories()
+  }, [])
+
+  const mapCategoryItems = () =>
+    categories.map((cat) => {
+      return 'Hello'
+      // const { id, name } = cat
+      // return <Menu.Item key={id}>{name}</Menu.Item>
+    })
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -45,19 +63,27 @@ const Navbar = ({ children }: LayoutProps) => {
         }}
       >
         <div className="logo" />
-        <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1" icon={<DesktopOutlined />}>
+        {/* selectedKeys={[props.location.pathname]} */}
+        <Menu
+          theme="light"
+          defaultSelectedKeys={['/']}
+          mode="inline"
+          selectedKeys={[pathname]}
+        >
+          <Menu.Item key="/" icon={<DesktopOutlined />}>
             <Link href="/">
               <a>Home</a>
             </Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<ShoppingCartOutlined />}>
-            Cart
+          <Menu.Item key="/cart" icon={<ShoppingCartOutlined />}>
+            <Link href="/cart">
+              <a>Cart</a>
+            </Link>
           </Menu.Item>
-          <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-            <Menu.Item key="3">Tom</Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
+          <SubMenu key="sub1" icon={<UserOutlined />} title="Categories">
+            {categories.map((val) => {
+              return <Menu.Item key={val['_id']}>{val['name']}</Menu.Item>
+            })}
           </SubMenu>
           <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
             <Menu.Item key="6">Team 1</Menu.Item>

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Divider } from 'semantic-ui-react'
-import Layout from '@components/Layout/Layout'
+import MyLayout from '@components/Layout/MyLayout'
+import { Divider } from 'antd'
 import CartItemList from '@components/CartItemList/CartItemList'
 import CartSummary from '@components/CartSummary/CartSummary'
 import { useCart, useCartMutations } from '@store/Cart'
@@ -10,11 +10,11 @@ const CartPage = () => {
   const { removeFromCart } = useCartMutations()
 
   return (
-    <Layout>
+    <MyLayout>
       <CartItemList items={items} removeFromCart={removeFromCart} />
       <Divider />
-      <CartSummary totalAmount={count} />
-    </Layout>
+      {/* <CartSummary totalAmount={count} /> */}
+    </MyLayout>
   )
 }
 

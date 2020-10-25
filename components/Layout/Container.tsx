@@ -1,9 +1,12 @@
 import React from 'react'
+import Link from 'next/link'
 
 import { Layout, Breadcrumb } from 'antd'
 import { BackTop } from 'antd'
 
 import ShoppingCartIcon from '@components/Navbar/ShoppingCartIcon'
+// import { count } from 'console'
+import { useCart, useCartMutations } from '@store/Cart'
 
 type LayoutProps = {
   children?: React.ReactNode
@@ -12,6 +15,7 @@ type LayoutProps = {
 const { Header, Content, Footer } = Layout
 
 const Container = ({ children }: LayoutProps) => {
+  const { items, count } = useCart()
   return (
     <Layout className="site-layout" style={{ marginLeft: '200px' }}>
       <Header
@@ -20,10 +24,19 @@ const Container = ({ children }: LayoutProps) => {
           padding: 0,
           display: 'flex',
           justifyContent: 'space-around',
+          alignItems: 'center',
         }}
       >
-        <h1 style={{ color: 'white' }}>Pokemon Store</h1>
-        <ShoppingCartIcon cartCount={12} name="Canasta" />
+        <Link href="/">
+          <a>
+            <h1 style={{ color: 'white' }}>Pokemon Store</h1>
+          </a>
+        </Link>
+        <Link href="/cart">
+          <a>
+            <ShoppingCartIcon cartCount={count} name="Canasta" />
+          </a>
+        </Link>
       </Header>
       <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>

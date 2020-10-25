@@ -17,12 +17,16 @@ type TProductAttributes = {
 }
 
 type TProduct = {
+  // _id: TProductId
   id: TProductId
   name: string
-  sku: string
   price: number
   image: Url
-  attributes: TProductAttributes
+  category_id?: string
+  description?: string
+  type?: string
+  sku?: string
+  attributes?: TProductAttributes
 }
 
 type TAPIAVODetailResponse = TProduct
