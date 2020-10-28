@@ -7,8 +7,6 @@ type AddToCartProps = {
   product: TProduct
 }
 
-// Fake a server Response, we don't care on this project
-// about data persistency, but you may add it :)
 const addToCartRequest = () =>
   new Promise((resolve, reject) => {
     window.setTimeout(resolve, 600)
@@ -87,7 +85,7 @@ const AddToCart = ({ product }: AddToCartProps) => {
         <Form.Item rules={[{ validator: checkQuantity }]}>
           <InputNumber
             // placeholder="Quantity"
-            defaultValue={0}
+            defaultValue={1}
             value={quantity}
             min={1}
             step={1}
@@ -103,7 +101,7 @@ const AddToCart = ({ product }: AddToCartProps) => {
             icon={<ShoppingCartOutlined />}
             loading={loading}
           >
-            Add to Cart
+            Add
           </Button>
         </Form.Item>
       </Form>

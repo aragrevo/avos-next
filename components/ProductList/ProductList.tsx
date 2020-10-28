@@ -8,8 +8,8 @@ type ProductListProps = {
   products: TProduct[]
 }
 
-const mapProductsToCards = ({ name, id, price, image }: TProduct) => (
-  <Link key={id} href="/product/[id]" as={`/product/${id}`} passHref>
+const mapProductsToCards = ({ name, _id, price, image }: TProduct) => (
+  <Link key={_id} href="/product/[_id]" as={`/product/${_id}`} passHref>
     <a>
       <Card hoverable cover={<img alt="example" src={image} />}>
         <Meta title={name} description={price}></Meta>
@@ -24,7 +24,7 @@ const ProductList = ({ products }: ProductListProps) => (
       gutter: 16,
       xs: 1,
       sm: 2,
-      md: 4,
+      md: 3,
       lg: 4,
       xl: 5,
       xxl: 3,

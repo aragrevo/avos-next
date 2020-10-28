@@ -17,8 +17,7 @@ type TProductAttributes = {
 }
 
 type TProduct = {
-  // _id: TProductId
-  id: TProductId
+  _id: TProductId
   name: string
   price: number
   image: Url

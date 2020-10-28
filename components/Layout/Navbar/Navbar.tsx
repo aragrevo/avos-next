@@ -85,12 +85,22 @@ const Navbar = ({ children }: LayoutProps) => {
               return <Menu.Item key={val['_id']}>{val['name']}</Menu.Item>
             })}
           </SubMenu>
-          <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
+          <SubMenu key="sub2" icon={<TeamOutlined />} title="Administrator">
+            <Menu.Item key="6">
+              <Link href="/admin/categories">
+                <a>Categories</a>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="8">
+              <Link href="/admin/products">
+                <a>Products</a>
+              </Link>
+            </Menu.Item>
           </SubMenu>
           <Menu.Item key="9" icon={<FileOutlined />}>
-            Files
+            <Link href="/checkout">
+              <a>Checkout</a>
+            </Link>
           </Menu.Item>
         </Menu>
       </Sider>
@@ -106,31 +116,6 @@ const Navbar = ({ children }: LayoutProps) => {
         }
       `}</style>
     </Layout>
-    // <Menu size="huge" borderless pointing as="header">
-    //   <Container text>
-    //     <Link href="/" passHref>
-    //       <Menu.Item
-    //         active={pathname === '/'}
-    //         title="Inicio | Todos los productos"
-    //       >
-    //         <Avocado />
-    //         Avo Store
-    //       </Menu.Item>
-    //     </Link>
-    //     <Menu.Menu position="right">
-    //       <Link href="/cart" passHref>
-    //         <Menu.Item active={pathname === '/cart'}>
-    //           <ShoppingCartIcon cartCount={cartCount} name="Canasta" />
-    //         </Menu.Item>
-    //       </Link>
-    //     </Menu.Menu>
-    //   </Container>
-    //   <style jsx global>{`
-    //     .ui.menu.huge {
-    //       font-size: 1.5rem;
-    //     }
-    //   `}</style>
-    // </Menu>
   )
 }
 

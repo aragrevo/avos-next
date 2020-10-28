@@ -10,8 +10,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (query.id) {
-      window
-        .fetch(`https://pokeapi.co/api/v2/pokemon/${query.id}`)
+      fetch(`https://store.nicobytes.site/api/products/${query.id}`)
         .then((response) => response.json())
         .then((data: any) => {
           console.log(data)

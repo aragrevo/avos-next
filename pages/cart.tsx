@@ -13,7 +13,7 @@ const CartPage = () => {
     <MyLayout>
       <CartItemList items={items} removeFromCart={removeFromCart} />
       <Divider />
-      {/* <CartSummary totalAmount={count} /> */}
+      <CartSummary totalAmount={count} />
     </MyLayout>
   )
 }

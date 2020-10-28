@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Button } from 'semantic-ui-react'
+import { Button, Row, Col, Popconfirm } from 'antd'
 
 type CartSummaryProps = {
   totalAmount: number
@@ -7,15 +7,17 @@ type CartSummaryProps = {
 
 const CartSummary = ({ totalAmount }: CartSummaryProps) => {
   return (
-    <Segment clearing size="large" as="section">
-      <span>
-        <strong>Sub total:</strong>
-        {` ${totalAmount}`}
-      </span>
-      <Button color="black" floated="right">
-        Check out
-      </Button>
-    </Segment>
+    <Row>
+      <Col xs={4}>
+        <span>
+          <strong>Sub total:</strong>
+          {` ${totalAmount}`}
+        </span>
+      </Col>
+      <Col xs={4} offset={16}>
+        <Button color="black">Check out</Button>
+      </Col>
+    </Row>
   )
 }
 
